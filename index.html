@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnXcs</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Basic styles for dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .search-bar {
+            margin: 8px;
+            padding: 5px;
+            width: 90%;
+        }
+
+        .no-results {
+            padding: 12px;
+            color: red;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="title-bar">
+            <div class="dropdown">
+                <a href="#">Programming Languages</a>
+                <div class="dropdown-content">
+                    <input type="text" placeholder="Search..." class="search-bar" oninput="filterItems(event, 'progItems')">
+                    <div id="progItems">
+                        <a href="topic.html?topic=java">Java</a>
+                        <a href="topic.html?topic=python">Python</a>
+                        <a href="topic.html?topic=cpp">C++</a>
+                        <a href="topic.html?topic=c">C</a>
+                        <a href="topic.html?topic=javascript">JavaScript</a>
+                    </div>
+                    <div class="no-results" id="no-results-progItems">No results found</div>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="#">Web Development</a>
+                <div class="dropdown-content">
+                    <input type="text" placeholder="Search..." class="search-bar" oninput="filterItems(event, 'webItems')">
+                    <div id="webItems">
+                        <a href="topic.html?topic=html">HTML</a>
+                        <a href="topic.html?topic=css">CSS</a>
+                        <a href="topic.html?topic=javascript">JavaScript</a>
+                        <a href="topic.html?topic=react">React</a>
+                        <a href="topic.html?topic=angular">Angular</a>
+                        <a href="topic.html?topic=vue">Vue</a>
+                    </div>
+                    <div class="no-results" id="no-results-webItems">No results found</div>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="#">Cloud Computing</a>
+                <div class="dropdown-content">
+                    <input type="text" placeholder="Search..." class="search-bar" oninput="filterItems(event, 'cloudItems')">
+                    <div id="cloudItems">
+                        <a href="topic.html?topic=aws">AWS</a>
+                        <a href="topic.html?topic=gcp">Google Cloud</a>
+                        <a href="topic.html?topic=azure">Azure</a>
+                    </div>
+                    <div class="no-results" id="no-results-cloudItems">No results found</div>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="#">Computer Science Fundamentals</a>
+                <div class="dropdown-content">
+                    <input type="text" placeholder="Search..." class="search-bar" oninput="filterItems(event, 'csItems')">
+                    <div id="csItems">
+                        <a href="topic.html?topic=os">Operating Systems</a>
+                        <a href="topic.html?topic=networks">Computer Networks</a>
+                        <a href="topic.html?topic=dbms">DBMS</a>
+                        <a href="topic.html?topic=system-design">System Design</a>
+                    </div>
+                    <div class="no-results" id="no-results-csItems">No results found</div>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="#">Cybersecurity</a>
+                <div class="dropdown-content">
+                    <input type="text" placeholder="Search..." class="search-bar" oninput="filterItems(event, 'secItems')">
+                    <div id="secItems">
+                        <a href="topic.html?topic=pen-testing">Penetration Testing</a>
+                        <a href="topic.html?topic=network-security">Network Security</a>
+                        <a href="topic.html?topic=web-security">Web Security</a>
+                    </div>
+                    <div class="no-results" id="no-results-secItems">No results found</div>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="#">AI/ML</a>
+                <div class="dropdown-content">
+                    <input type="text" placeholder="Search..." class="search-bar" oninput="filterItems(event, 'aiItems')">
+                    <div id="aiItems">
+                        <a href="topic.html?topic=ml">Machine Learning</a>
+                        <a href="topic.html?topic=deep-learning">Deep Learning</a>
+                        <a href="topic.html?topic=nlp">NLP</a>
+                        <a href="topic.html?topic=computer-vision">Computer Vision</a>
+                    </div>
+                    <div class="no-results" id="no-results-aiItems">No results found</div>
+                </div>
+            </div>
+        </div>
+        <div class="auth-buttons">
+            <button id="login">Login</button>
+            <button id="sign-up">Sign Up</button>
+        </div>
+    </div>
+    <div class="content">
+        <h1>Skip the Search. Start Learning.</h1>
+    </div>
+
+    <script>
+        function filterItems(event, itemId) {
+            const filter = event.target.value.toLowerCase();
+            const items = document.querySelectorAll(`#${itemId} a`);
+            let anyVisible = false;
+
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.style.display = text.includes(filter) ? "block" : "none";
+                if (text.includes(filter)) anyVisible = true;
+            });
+
+            // Show "No results found" message if needed
+            const noResultsDiv = document.getElementById(`no-results-${itemId}`);
+            noResultsDiv.style.display = anyVisible ? "none" : "block";
+        }
+    </script>
+</body>
+</html>
