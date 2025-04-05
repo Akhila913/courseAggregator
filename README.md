@@ -19,14 +19,14 @@ It gathers resources from platforms like:
 - Project suggestions from GitHub  
 ---
 ## Tech Stack
-**Frontend**  
+### **Frontend**  
 - HTML  
 - CSS  
 - JavaScript  
-**Backend**  
+### **Backend**  
 - Node.js  
 - Express.js  
-**APIs Used**  
+### **APIs Used**  
 - Google Custom Search API  
 - YouTube Data API  
 - Coursera API  
